@@ -1,0 +1,163 @@
+// lib/mock-data.ts
+
+export type Condition = 'NEW' | 'LIKE_NEW' | 'VERY_GOOD' | 'GOOD';
+
+export type Product = {
+  id: string;
+  slug: string;
+  title: string;
+  brand: string;
+  images: string[];          // paths under /public or remote URLs
+  originalPrice: number;     // MSRP or original price
+  salePrice: number;         // your resale price
+  condition: Condition;
+  qty: number;               // 1 for unique items; >1 if multiple in stock
+  sourceVendor: string;      // where you sourced it (transparency)
+};
+
+export const products: Product[] = [
+  {
+    id: 'p-0001',
+    slug: 'olive-fleece-hoodie',
+    title: 'Olive Fleece Hoodie',
+    brand: 'Nike',
+    images: ['/placeholder.png'],
+    originalPrice: 89,
+    salePrice: 38,
+    condition: 'LIKE_NEW',
+    qty: 1,
+    sourceVendor: 'Nordstrom Rack',
+  },
+  {
+    id: 'p-0002',
+    slug: 'black-denim-jacket',
+    title: 'Black Denim Jacket',
+    brand: 'Levi’s',
+    images: ['/placeholder.png'],
+    originalPrice: 129,
+    salePrice: 59,
+    condition: 'VERY_GOOD',
+    qty: 2,
+    sourceVendor: 'Marshalls',
+  },
+  {
+    id: 'p-0003',
+    slug: 'white-leather-sneakers',
+    title: 'White Leather Sneakers',
+    brand: 'Adidas',
+    images: ['/placeholder.png'],
+    originalPrice: 110,
+    salePrice: 68,
+    condition: 'LIKE_NEW',
+    qty: 2,
+    sourceVendor: 'TJ Maxx',
+  },
+  {
+    id: 'p-0004',
+    slug: 'camel-wool-overcoat',
+    title: 'Camel Wool Overcoat',
+    brand: 'COS',
+    images: ['/placeholder.png'],
+    originalPrice: 250,
+    salePrice: 145,
+    condition: 'VERY_GOOD',
+    qty: 1,
+    sourceVendor: 'Nordstrom Rack',
+  },
+  {
+    id: 'p-0005',
+    slug: 'navy-slim-chinos',
+    title: 'Navy Slim Chinos',
+    brand: 'J.Crew',
+    images: ['/placeholder.png'],
+    originalPrice: 89,
+    salePrice: 49,
+    condition: 'LIKE_NEW',
+    qty: 3,
+    sourceVendor: 'Outlet Store',
+  },
+  {
+    id: 'p-0006',
+    slug: 'linen-blend-shirt-natural',
+    title: 'Linen-Blend Shirt (Natural)',
+    brand: 'Uniqlo',
+    images: ['/placeholder.png'],
+    originalPrice: 39,
+    salePrice: 22,
+    condition: 'LIKE_NEW',
+    qty: 2,
+    sourceVendor: 'Clearance',
+  },
+  {
+    id: 'p-0007',
+    slug: 'black-midi-slip-dress',
+    title: 'Black Midi Slip Dress',
+    brand: 'Reformation',
+    images: ['/placeholder.png'],
+    originalPrice: 278,
+    salePrice: 149,
+    condition: 'VERY_GOOD',
+    qty: 1,
+    sourceVendor: 'Consignment',
+  },
+  {
+    id: 'p-0008',
+    slug: 'heather-gray-crewneck-sweater',
+    title: 'Heather Gray Crewneck Sweater',
+    brand: 'Everlane',
+    images: ['/placeholder.png'],
+    originalPrice: 98,
+    salePrice: 54,
+    condition: 'LIKE_NEW',
+    qty: 1,
+    sourceVendor: 'Everlane Sale',
+  },
+  {
+    id: 'p-0009',
+    slug: 'forest-puffer-jacket',
+    title: 'Forest Puffer Jacket',
+    brand: 'Patagonia',
+    images: ['/placeholder.png'],
+    originalPrice: 279,
+    salePrice: 199,
+    condition: 'VERY_GOOD',
+    qty: 1,
+    sourceVendor: 'Worn Wear',
+  },
+  {
+    id: 'p-0010',
+    slug: 'lululemon-running-shorts-7',
+    title: 'Running Shorts 7″',
+    brand: 'Lululemon',
+    images: ['/placeholder.png'],
+    originalPrice: 78,
+    salePrice: 39,
+    condition: 'LIKE_NEW',
+    qty: 2,
+    sourceVendor: 'Return Lot',
+  },
+  {
+    id: 'p-0011',
+    slug: 'vintage-graphic-tee',
+    title: 'Vintage Graphic Tee',
+    brand: 'Bandit',
+    images: ['/placeholder.png'],
+    originalPrice: 45,
+    salePrice: 22,
+    condition: 'GOOD',
+    qty: 1,
+    sourceVendor: 'Thrift',
+  },
+  {
+    id: 'p-0012',
+    slug: 'brown-leather-chelsea-boots',
+    title: 'Brown Leather Chelsea Boots',
+    brand: 'Clarks',
+    images: ['/placeholder.png'],
+    originalPrice: 160,
+    salePrice: 95,
+    condition: 'VERY_GOOD',
+    qty: 1,
+    sourceVendor: 'Clearance',
+  },
+];
