@@ -1,5 +1,8 @@
 // store/cartStore.ts
+'use client';
+
 import { create } from 'zustand';
+import { persist } from 'zustand/middleware';
 
 export type CartItem = {
   id: string; slug: string; title: string; brand: string; price: number; image: string; qty: number;
@@ -13,7 +16,7 @@ type CartState = {
   count: () => number;
 };
 
-export const useCartStore = create<CartState>((set, get) => ({
+export const useCartStore = create<CartState>()(persist((set, get) => ({
   items: [],
   addToCart: (item, qty = 1) =>
     set((state) => {
@@ -27,4 +30,6 @@ export const useCartStore = create<CartState>((set, get) => ({
   removeFromCart: (id) => set((state) => ({ items: state.items.filter((i) => i.id !== id) })),
   clearCart: () => set({ items: [] }),
   count: () => get().items.reduce((sum, i) => sum + i.qty, 0),
-}));
+}),
+ { name: 'vetue-cart' } // localStorage key
+));
