@@ -1,13 +1,31 @@
 // app/cart/page.tsx
 'use client';
-
 import Image from 'next/image';
 import { useCartStore } from '@/store/cartStore';
+import { useState } from 'react';
 
 export default function CartPage() {
   const { items, removeFromCart, clearCart } = useCartStore();
-
   const total = items.reduce((sum, i) => sum + i.price * i.qty, 0);
+  const [loading, setLoading] = useState(false);
+
+  async function startCheckout() {
+    try {
+      setLoading(true);
+      const res = await fetch('/api/checkout', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          items: items.map((i) => ({ title: i.title, price: i.price, qty: i.qty })),
+        }),
+      });
+      const data = await res.json();
+      if (data.url) window.location.href = data.url;
+      else alert('Checkout failed.');
+    } finally {
+      setLoading(false);
+    }
+  }
 
   return (
     <section className="mx-auto max-w-4xl px-4 py-10">
@@ -51,8 +69,12 @@ export default function CartPage() {
             <div className="text-right">
               <p className="text-sm text-gray-600">Subtotal</p>
               <p className="text-xl font-bold">${total.toFixed(2)}</p>
-              <button className="mt-3 rounded-lg bg-black px-5 py-3 text-sm font-semibold text-white hover:bg-gray-900">
-                Checkout (coming soon)
+              <button
+                onClick={startCheckout}
+                disabled={loading}
+                className="mt-3 rounded-lg bg-black px-5 py-3 text-sm font-semibold text-white hover:bg-gray-900 disabled:cursor-not-allowed disabled:bg-gray-300"
+              >
+                {loading ? 'Redirecting…' : 'Checkout'}
               </button>
             </div>
           </div>
